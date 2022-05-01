@@ -1,0 +1,3269 @@
+<!doctype html>
+<html>
+  <head>
+    <title>IPBan Pro Web Admin API</title>
+    <style type="text/css">
+      body {
+      	font-family: Trebuchet MS, sans-serif;
+      	font-size: 15px;
+      	color: #444;
+      	margin-right: 24px;
+      }
+      
+      h1	{
+      	font-size: 25px;
+      }
+      h2	{
+      	font-size: 20px;
+      }
+      h3	{
+      	font-size: 16px;
+      	font-weight: bold;
+      }
+      hr	{
+      	height: 1px;
+      	border: 0;
+      	color: #ddd;
+      	background-color: #ddd;
+      }
+      
+      .app-desc {
+        clear: both;
+        margin-left: 20px;
+      }
+      .param-name {
+        width: 100%;
+      }
+      .license-info {
+        margin-left: 20px;
+      }
+      
+      .license-url {
+        margin-left: 20px;
+      }
+      
+      .model {
+        margin: 0 0 0px 20px;
+      }
+      
+      .method {
+        margin-left: 20px;
+      }
+      
+      .method-notes	{
+      	margin: 10px 0 20px 0;
+      	font-size: 90%;
+      	color: #555;
+      }
+      
+      pre {
+        padding: 10px;
+        margin-bottom: 2px;
+      }
+      
+      .http-method {
+       text-transform: uppercase;
+      }
+      
+      pre.get {
+        background-color: #0f6ab4;
+      }
+      
+      pre.post {
+        background-color: #10a54a;
+      }
+      
+      pre.put {
+        background-color: #c5862b;
+      }
+      
+      pre.delete {
+        background-color: #a41e22;
+      }
+      
+      .huge	{
+      	color: #fff;
+      }
+      
+      pre.example {
+        background-color: #f3f3f3;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      
+      code {
+        white-space: pre;
+      }
+      
+      .nickname {
+        font-weight: bold;
+      }
+      
+      .method-path {
+        font-size: 1.5em;
+        background-color: #0f6ab4;
+      }
+      
+      .up {
+        float:right;
+      }
+      
+      .parameter {
+        width: 500px;
+      }
+      
+      .param {
+        width: 500px;
+        padding: 10px 0 0 20px;
+        font-weight: bold;
+      }
+      
+      .param-desc {
+        width: 700px;
+        padding: 0 0 0 20px;
+        color: #777;
+      }
+      
+      .param-type {
+        font-style: italic;
+      }
+      
+      .param-enum-header {
+      width: 700px;
+      padding: 0 0 0 60px;
+      color: #777;
+      font-weight: bold;
+      }
+      
+      .param-enum {
+      width: 700px;
+      padding: 0 0 0 80px;
+      color: #777;
+      font-style: italic;
+      }
+      
+      .field-label {
+        padding: 0;
+        margin: 0;
+        clear: both;
+      }
+      
+      .field-items	{
+      	padding: 0 0 15px 0;
+      	margin-bottom: 15px;
+      }
+      
+      .return-type {
+        clear: both;
+        padding-bottom: 10px;
+      }
+      
+      .param-header {
+        font-weight: bold;
+      }
+      
+      .method-tags {
+        text-align: right;
+      }
+      
+      .method-tag {
+        background: none repeat scroll 0% 0% #24A600;
+        border-radius: 3px;
+        padding: 2px 10px;
+        margin: 2px;
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+  <h1>IPBan Pro Web Admin API</h1>
+    <div class="app-desc">IPBan Pro Web Admin API Documentation</div>
+    <div class="app-desc">More information: <a href="https://ipban.com">https://ipban.com</a></div>
+    <div class="app-desc">Contact Info: <a href="support@ipban.com">support@ipban.com</a></div>
+    <div class="app-desc">Version: v1</div>
+    
+    <div class="license-info">Custom</div>
+    <div class="license-url">https://ipban.com/terms-and-conditions</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#API">API</a></h4>
+  <ul>
+  <li><a href="#apiBanipaddressesGet"><code><span class="http-method">get</span> /api/banipaddresses</code></a></li>
+  <li><a href="#apiBlacklistGet"><code><span class="http-method">get</span> /api/blacklist</code></a></li>
+  <li><a href="#apiChangecredentialsPost"><code><span class="http-method">post</span> /api/changecredentials</code></a></li>
+  <li><a href="#apiCheckbanstateipaddressesIdGet"><code><span class="http-method">get</span> /api/checkbanstateipaddresses/{id}</code></a></li>
+  <li><a href="#apiClientconfigGet"><code><span class="http-method">get</span> /api/clientconfig</code></a></li>
+  <li><a href="#apiClientstartGet"><code><span class="http-method">get</span> /api/clientstart</code></a></li>
+  <li><a href="#apiClientstopGet"><code><span class="http-method">get</span> /api/clientstop</code></a></li>
+  <li><a href="#apiClientupdateGet"><code><span class="http-method">get</span> /api/clientupdate</code></a></li>
+  <li><a href="#apiCountrycodestocountrynamesGet"><code><span class="http-method">get</span> /api/countrycodestocountrynames</code></a></li>
+  <li><a href="#apiCountrynameslistGet"><code><span class="http-method">get</span> /api/countrynameslist</code></a></li>
+  <li><a href="#apiFailedloginattemptsGet"><code><span class="http-method">get</span> /api/failedloginattempts</code></a></li>
+  <li><a href="#apiIpaddresseventsIdGet"><code><span class="http-method">get</span> /api/ipaddressevents/{id}</code></a></li>
+  <li><a href="#apiIpcountryrangesIdGet"><code><span class="http-method">get</span> /api/ipcountryranges/{id}</code></a></li>
+  <li><a href="#apiIpcountryrangesIdPost"><code><span class="http-method">post</span> /api/ipcountryranges/{id}</code></a></li>
+  <li><a href="#apiMachineIdDelete"><code><span class="http-method">delete</span> /api/machine/{id}</code></a></li>
+  <li><a href="#apiMachineIdGet"><code><span class="http-method">get</span> /api/machine/{id}</code></a></li>
+  <li><a href="#apiMachineMachineGuidDelete"><code><span class="http-method">delete</span> /api/machine/{machineGuid}</code></a></li>
+  <li><a href="#apiMachinePost"><code><span class="http-method">post</span> /api/machine</code></a></li>
+  <li><a href="#apiMachinesGet"><code><span class="http-method">get</span> /api/machines</code></a></li>
+  <li><a href="#apiRecentactivityGet"><code><span class="http-method">get</span> /api/recentactivity</code></a></li>
+  <li><a href="#apiResolveipaddressesIdGet"><code><span class="http-method">get</span> /api/resolveipaddresses/{id}</code></a></li>
+  <li><a href="#apiSetmachinealiasGet"><code><span class="http-method">get</span> /api/setmachinealias</code></a></li>
+  <li><a href="#apiSettingsGet"><code><span class="http-method">get</span> /api/settings</code></a></li>
+  <li><a href="#apiSettingsPost"><code><span class="http-method">post</span> /api/settings</code></a></li>
+  <li><a href="#apiStatusGet"><code><span class="http-method">get</span> /api/status</code></a></li>
+  <li><a href="#apiSuccessloginattemptsGet"><code><span class="http-method">get</span> /api/successloginattempts</code></a></li>
+  <li><a href="#apiTestemailGet"><code><span class="http-method">get</span> /api/testemail</code></a></li>
+  <li><a href="#apiUnbanipaddressesGet"><code><span class="http-method">get</span> /api/unbanipaddresses</code></a></li>
+  <li><a href="#apiWhitelistGet"><code><span class="http-method">get</span> /api/whitelist</code></a></li>
+  </ul>
+  <h4><a href="#Home">Home</a></h4>
+  <ul>
+  <li><a href="#aboutGet"><code><span class="http-method">get</span> /about</code></a></li>
+  <li><a href="#deletemachineMachineGuidPost"><code><span class="http-method">post</span> /deletemachine/{machineGuid}</code></a></li>
+  <li><a href="#errorGet"><code><span class="http-method">get</span> /error</code></a></li>
+  <li><a href="#ipaddresseventsIdIpAddressLookupGet"><code><span class="http-method">get</span> /ipaddressevents/{id}/{ipAddressLookup}</code></a></li>
+  <li><a href="#licensesGet"><code><span class="http-method">get</span> /licenses</code></a></li>
+  <li><a href="#licensesPost"><code><span class="http-method">post</span> /licenses</code></a></li>
+  <li><a href="#loginGet"><code><span class="http-method">get</span> /login</code></a></li>
+  <li><a href="#loginPost"><code><span class="http-method">post</span> /login</code></a></li>
+  <li><a href="#logoutGet"><code><span class="http-method">get</span> /logout</code></a></li>
+  <li><a href="#machineIdGet"><code><span class="http-method">get</span> /machine/{id}</code></a></li>
+  <li><a href="#machinePost"><code><span class="http-method">post</span> /machine</code></a></li>
+  <li><a href="#machinesGet"><code><span class="http-method">get</span> /machines</code></a></li>
+  <li><a href="#recentactivityGet"><code><span class="http-method">get</span> /recentactivity</code></a></li>
+  <li><a href="#rootGet"><code><span class="http-method">get</span> /</code></a></li>
+  <li><a href="#settingsGet"><code><span class="http-method">get</span> /settings</code></a></li>
+  <li><a href="#settingsPost"><code><span class="http-method">post</span> /settings</code></a></li>
+  <li><a href="#toolsChangecredentialsGet"><code><span class="http-method">get</span> /tools-changecredentials</code></a></li>
+  <li><a href="#toolsGet"><code><span class="http-method">get</span> /tools</code></a></li>
+  <li><a href="#toolsIpaddresseventsGet"><code><span class="http-method">get</span> /tools-ipaddressevents</code></a></li>
+  <li><a href="#toolsIsipaddressbannedGet"><code><span class="http-method">get</span> /tools-isipaddressbanned</code></a></li>
+  <li><a href="#toolsResolveipaddressesGet"><code><span class="http-method">get</span> /tools-resolveipaddresses</code></a></li>
+  <li><a href="#toolsUnbanipaddressesGet"><code><span class="http-method">get</span> /tools-unbanipaddresses</code></a></li>
+  <li><a href="#toolsUpdateclientsGet"><code><span class="http-method">get</span> /tools-updateclients</code></a></li>
+  <li><a href="#updateclientsPost"><code><span class="http-method">post</span> /updateclients</code></a></li>
+  </ul>
+
+  <h1><a name="API">API</a></h1>
+  <div class="method"><a name="apiBanipaddressesGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/banipaddresses</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiBanipaddressesGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">ipAddresses (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiBlacklistGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/blacklist</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiBlacklistGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">maxCount (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#BlacklistedIPAddressesModel">BlacklistedIPAddressesModel</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "blacklistedIPAddresses" : [ "blacklistedIPAddresses", "blacklistedIPAddresses" ],
+  "message" : "message",
+  "error" : true
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#BlacklistedIPAddressesModel">BlacklistedIPAddressesModel</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiChangecredentialsPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/changecredentials</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiChangecredentialsPost</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/x-www-form-urlencoded</code></li>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#api_changecredentials_body_1">api_changecredentials_body_1</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+                </div>  <!-- field-items -->
+
+
+
+    <h3 class="field-label">Form parameters</h3>
+    <div class="field-items">
+      <div class="param">UserName (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">Password (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">Role (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>      <div class="param">Delete (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Form Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiCheckbanstateipaddressesIdGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/checkbanstateipaddresses/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiCheckbanstateipaddressesIdGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#CheckBanStateIPAddressesModel">CheckBanStateIPAddressesModel</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "message" : "message",
+  "error" : true,
+  "ipAddressesBanState" : {
+    "key" : true
+  }
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#CheckBanStateIPAddressesModel">CheckBanStateIPAddressesModel</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiClientconfigGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/clientconfig</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiClientconfigGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiClientstartGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/clientstart</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiClientstartGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">ip (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">remoteIp (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">otherip (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">fqdn (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">guid (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">version (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">osname (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">osversion (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiClientstopGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/clientstop</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiClientstopGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">ip (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">remoteIp (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">otherip (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">fqdn (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">guid (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">version (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">osname (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">osversion (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiClientupdateGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/clientupdate</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiClientupdateGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">ip (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">remoteIp (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">otherip (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">fqdn (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">guid (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">version (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">osname (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">osversion (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiCountrycodestocountrynamesGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/countrycodestocountrynames</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiCountrycodestocountrynamesGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">languageCode (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">countryCodes (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#CountryCodesToCountryNamesModel">CountryCodesToCountryNamesModel</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "countryNames" : [ "countryNames", "countryNames" ],
+  "message" : "message",
+  "error" : true,
+  "languageCode" : "languageCode"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#CountryCodesToCountryNamesModel">CountryCodesToCountryNamesModel</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiCountrynameslistGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/countrynameslist</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiCountrynameslistGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">languageCode (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">query (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#IPAddressCountryNamesListModel">IPAddressCountryNamesListModel</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "names" : [ {
+    "countryCode" : "countryCode",
+    "name" : "name",
+    "id" : 0,
+    "languageCode" : "languageCode"
+  }, {
+    "countryCode" : "countryCode",
+    "name" : "name",
+    "id" : 0,
+    "languageCode" : "languageCode"
+  } ],
+  "query" : "query",
+  "message" : "message",
+  "error" : true,
+  "languageCode" : "languageCode"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#IPAddressCountryNamesListModel">IPAddressCountryNamesListModel</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiFailedloginattemptsGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/failedloginattempts</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiFailedloginattemptsGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">maxCount (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#FailedLoginAttemptsModel">FailedLoginAttemptsModel</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "message" : "message",
+  "error" : true,
+  "failedLoginAttempts" : [ {
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "machineId" : 1,
+    "ipAddressId" : 1,
+    "id" : 7,
+    "source" : "source",
+    "userName" : "userName"
+  }, {
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "machineId" : 1,
+    "ipAddressId" : 1,
+    "id" : 7,
+    "source" : "source",
+    "userName" : "userName"
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#FailedLoginAttemptsModel">FailedLoginAttemptsModel</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiIpaddresseventsIdGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/ipaddressevents/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiIpaddresseventsIdGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#IPAddressEvents">IPAddressEvents</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "blacklistedIPAddresses" : [ {
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "ipAddress" : {
+      "hostName" : "hostName",
+      "country" : "country",
+      "city" : "city",
+      "ipString" : "ipString",
+      "id" : 9,
+      "region" : "region",
+      "updatedAt" : "2000-01-23T04:56:07.000+00:00"
+    },
+    "ipAddressId" : 7,
+    "id" : 2
+  }, {
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "ipAddress" : {
+      "hostName" : "hostName",
+      "country" : "country",
+      "city" : "city",
+      "ipString" : "ipString",
+      "id" : 9,
+      "region" : "region",
+      "updatedAt" : "2000-01-23T04:56:07.000+00:00"
+    },
+    "ipAddressId" : 7,
+    "id" : 2
+  } ],
+  "ipAddress" : {
+    "hostName" : "hostName",
+    "country" : "country",
+    "city" : "city",
+    "ipString" : "ipString",
+    "id" : 9,
+    "region" : "region",
+    "updatedAt" : "2000-01-23T04:56:07.000+00:00"
+  },
+  "successLoginAttempts" : [ {
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "machineId" : 4,
+    "machine" : {
+      "notes" : "notes",
+      "otherIPAddresses" : "otherIPAddresses",
+      "fqdn" : "fqdn",
+      "emailAddressesCollection" : [ "emailAddressesCollection", "emailAddressesCollection" ],
+      "machineGuid" : "machineGuid",
+      "localIPAddress" : "localIPAddress",
+      "osName" : "osName",
+      "version" : "version",
+      "props" : "props",
+      "createdAt" : "2000-01-23T04:56:07.000+00:00",
+      "emailAddresses" : "emailAddresses",
+      "osVersion" : "osVersion",
+      "remoteIPAddress" : "remoteIPAddress",
+      "machineWhitelist" : "machineWhitelist",
+      "configXml" : "configXml",
+      "alias" : "alias",
+      "id" : 0,
+      "updatedAt" : "2000-01-23T04:56:07.000+00:00",
+      "status" : "status"
+    },
+    "ipAddressId" : 2,
+    "id" : 3,
+    "source" : "source",
+    "userName" : "userName"
+  }, {
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "machineId" : 4,
+    "machine" : {
+      "notes" : "notes",
+      "otherIPAddresses" : "otherIPAddresses",
+      "fqdn" : "fqdn",
+      "emailAddressesCollection" : [ "emailAddressesCollection", "emailAddressesCollection" ],
+      "machineGuid" : "machineGuid",
+      "localIPAddress" : "localIPAddress",
+      "osName" : "osName",
+      "version" : "version",
+      "props" : "props",
+      "createdAt" : "2000-01-23T04:56:07.000+00:00",
+      "emailAddresses" : "emailAddresses",
+      "osVersion" : "osVersion",
+      "remoteIPAddress" : "remoteIPAddress",
+      "machineWhitelist" : "machineWhitelist",
+      "configXml" : "configXml",
+      "alias" : "alias",
+      "id" : 0,
+      "updatedAt" : "2000-01-23T04:56:07.000+00:00",
+      "status" : "status"
+    },
+    "ipAddressId" : 2,
+    "id" : 3,
+    "source" : "source",
+    "userName" : "userName"
+  } ],
+  "failedLoginAttempts" : [ {
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "machineId" : 1,
+    "ipAddressId" : 1,
+    "id" : 7,
+    "source" : "source",
+    "userName" : "userName"
+  }, {
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "machineId" : 1,
+    "ipAddressId" : 1,
+    "id" : 7,
+    "source" : "source",
+    "userName" : "userName"
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#IPAddressEvents">IPAddressEvents</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiIpcountryrangesIdGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/ipcountryranges/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiIpcountryrangesIdGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#IPAddressCountryRangesModel">IPAddressCountryRangesModel</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "countryRanges" : {
+    "code" : "code",
+    "names" : [ "names", "names" ],
+    "ranges" : [ "ranges", "ranges" ],
+    "id" : 0
+  },
+  "message" : "message",
+  "error" : true
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#IPAddressCountryRangesModel">IPAddressCountryRangesModel</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiIpcountryrangesIdPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/ipcountryranges/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiIpcountryrangesIdPost</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#IPAddressCountryRangesModel">IPAddressCountryRangesModel</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "countryRanges" : {
+    "code" : "code",
+    "names" : [ "names", "names" ],
+    "ranges" : [ "ranges", "ranges" ],
+    "id" : 0
+  },
+  "message" : "message",
+  "error" : true
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#IPAddressCountryRangesModel">IPAddressCountryRangesModel</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiMachineIdDelete"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /api/machine/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiMachineIdDelete</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  format: int64</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      
+      Boolean
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>true</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#Boolean">Boolean</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiMachineIdGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/machine/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiMachineIdGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  format: int64</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#MachineModel">MachineModel</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "machine" : {
+    "notes" : "notes",
+    "otherIPAddresses" : "otherIPAddresses",
+    "fqdn" : "fqdn",
+    "emailAddressesCollection" : [ "emailAddressesCollection", "emailAddressesCollection" ],
+    "machineGuid" : "machineGuid",
+    "localIPAddress" : "localIPAddress",
+    "osName" : "osName",
+    "version" : "version",
+    "props" : "props",
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "emailAddresses" : "emailAddresses",
+    "osVersion" : "osVersion",
+    "remoteIPAddress" : "remoteIPAddress",
+    "machineWhitelist" : "machineWhitelist",
+    "configXml" : "configXml",
+    "alias" : "alias",
+    "id" : 0,
+    "updatedAt" : "2000-01-23T04:56:07.000+00:00",
+    "status" : "status"
+  },
+  "message" : "message",
+  "error" : true
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#MachineModel">MachineModel</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiMachineMachineGuidDelete"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /api/machine/{machineGuid}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiMachineMachineGuidDelete</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">machineGuid (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiMachinePost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/machine</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiMachinePost</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#MachineModel">MachineModel</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+                </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiMachinesGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/machines</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiMachinesGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">maxCount (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  default: 1000 format: int32</div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#MachinesModel">MachinesModel</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "machines" : [ {
+    "notes" : "notes",
+    "otherIPAddresses" : "otherIPAddresses",
+    "fqdn" : "fqdn",
+    "emailAddressesCollection" : [ "emailAddressesCollection", "emailAddressesCollection" ],
+    "machineGuid" : "machineGuid",
+    "localIPAddress" : "localIPAddress",
+    "osName" : "osName",
+    "version" : "version",
+    "props" : "props",
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "emailAddresses" : "emailAddresses",
+    "osVersion" : "osVersion",
+    "remoteIPAddress" : "remoteIPAddress",
+    "machineWhitelist" : "machineWhitelist",
+    "configXml" : "configXml",
+    "alias" : "alias",
+    "id" : 0,
+    "updatedAt" : "2000-01-23T04:56:07.000+00:00",
+    "status" : "status"
+  }, {
+    "notes" : "notes",
+    "otherIPAddresses" : "otherIPAddresses",
+    "fqdn" : "fqdn",
+    "emailAddressesCollection" : [ "emailAddressesCollection", "emailAddressesCollection" ],
+    "machineGuid" : "machineGuid",
+    "localIPAddress" : "localIPAddress",
+    "osName" : "osName",
+    "version" : "version",
+    "props" : "props",
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "emailAddresses" : "emailAddresses",
+    "osVersion" : "osVersion",
+    "remoteIPAddress" : "remoteIPAddress",
+    "machineWhitelist" : "machineWhitelist",
+    "configXml" : "configXml",
+    "alias" : "alias",
+    "id" : 0,
+    "updatedAt" : "2000-01-23T04:56:07.000+00:00",
+    "status" : "status"
+  } ],
+  "message" : "message",
+  "error" : true
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#MachinesModel">MachinesModel</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiRecentactivityGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/recentactivity</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiRecentactivityGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">maxCount (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  default: 1000 format: int32</div>      <div class="param">machine (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  default: 0 format: int64</div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#RecentActivityModel">RecentActivityModel</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "summary" : {
+    "sumRecentSuccessfulLogins" : 5,
+    "sumRecentFailedLogins" : 1,
+    "sumRecentBannedIPAddresses" : 5,
+    "countrySummaries" : [ {
+      "country" : "country",
+      "bannedIPAddressCount" : 0,
+      "failedLoginCount" : 6
+    }, {
+      "country" : "country",
+      "bannedIPAddressCount" : 0,
+      "failedLoginCount" : 6
+    } ]
+  },
+  "blacklistedIPAddresses" : [ {
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "ipAddress" : {
+      "hostName" : "hostName",
+      "country" : "country",
+      "city" : "city",
+      "ipString" : "ipString",
+      "id" : 9,
+      "region" : "region",
+      "updatedAt" : "2000-01-23T04:56:07.000+00:00"
+    },
+    "ipAddressId" : 7,
+    "id" : 2
+  }, {
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "ipAddress" : {
+      "hostName" : "hostName",
+      "country" : "country",
+      "city" : "city",
+      "ipString" : "ipString",
+      "id" : 9,
+      "region" : "region",
+      "updatedAt" : "2000-01-23T04:56:07.000+00:00"
+    },
+    "ipAddressId" : 7,
+    "id" : 2
+  } ],
+  "successLoginAttempts" : [ {
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "machineId" : 4,
+    "machine" : {
+      "notes" : "notes",
+      "otherIPAddresses" : "otherIPAddresses",
+      "fqdn" : "fqdn",
+      "emailAddressesCollection" : [ "emailAddressesCollection", "emailAddressesCollection" ],
+      "machineGuid" : "machineGuid",
+      "localIPAddress" : "localIPAddress",
+      "osName" : "osName",
+      "version" : "version",
+      "props" : "props",
+      "createdAt" : "2000-01-23T04:56:07.000+00:00",
+      "emailAddresses" : "emailAddresses",
+      "osVersion" : "osVersion",
+      "remoteIPAddress" : "remoteIPAddress",
+      "machineWhitelist" : "machineWhitelist",
+      "configXml" : "configXml",
+      "alias" : "alias",
+      "id" : 0,
+      "updatedAt" : "2000-01-23T04:56:07.000+00:00",
+      "status" : "status"
+    },
+    "ipAddressId" : 2,
+    "id" : 3,
+    "source" : "source",
+    "userName" : "userName"
+  }, {
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "machineId" : 4,
+    "machine" : {
+      "notes" : "notes",
+      "otherIPAddresses" : "otherIPAddresses",
+      "fqdn" : "fqdn",
+      "emailAddressesCollection" : [ "emailAddressesCollection", "emailAddressesCollection" ],
+      "machineGuid" : "machineGuid",
+      "localIPAddress" : "localIPAddress",
+      "osName" : "osName",
+      "version" : "version",
+      "props" : "props",
+      "createdAt" : "2000-01-23T04:56:07.000+00:00",
+      "emailAddresses" : "emailAddresses",
+      "osVersion" : "osVersion",
+      "remoteIPAddress" : "remoteIPAddress",
+      "machineWhitelist" : "machineWhitelist",
+      "configXml" : "configXml",
+      "alias" : "alias",
+      "id" : 0,
+      "updatedAt" : "2000-01-23T04:56:07.000+00:00",
+      "status" : "status"
+    },
+    "ipAddressId" : 2,
+    "id" : 3,
+    "source" : "source",
+    "userName" : "userName"
+  } ],
+  "message" : "message",
+  "error" : true,
+  "failedLoginAttempts" : [ {
+    "isBlacklisted" : true,
+    "failedLoginAttempt" : {
+      "createdAt" : "2000-01-23T04:56:07.000+00:00",
+      "machineId" : 1,
+      "ipAddressId" : 1,
+      "id" : 7,
+      "source" : "source",
+      "userName" : "userName"
+    }
+  }, {
+    "isBlacklisted" : true,
+    "failedLoginAttempt" : {
+      "createdAt" : "2000-01-23T04:56:07.000+00:00",
+      "machineId" : 1,
+      "ipAddressId" : 1,
+      "id" : 7,
+      "source" : "source",
+      "userName" : "userName"
+    }
+  } ]
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#RecentActivityModel">RecentActivityModel</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiResolveipaddressesIdGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/resolveipaddresses/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiResolveipaddressesIdGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#LookupIPAddressesModel">LookupIPAddressesModel</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "ipAddresses" : [ {
+    "geography" : {
+      "continent" : "continent",
+      "country" : "country",
+      "regionCode" : "regionCode",
+      "city" : "city",
+      "countryCode" : "countryCode",
+      "postalCode" : "postalCode",
+      "latitude" : 0.8008282,
+      "isp" : "isp",
+      "region" : "region",
+      "continentCode" : "continentCode",
+      "longitude" : 6.0274563,
+      "locationAccuracyRadius" : 1
+    },
+    "ipAddress" : "ipAddress",
+    "message" : "message",
+    "error" : true
+  }, {
+    "geography" : {
+      "continent" : "continent",
+      "country" : "country",
+      "regionCode" : "regionCode",
+      "city" : "city",
+      "countryCode" : "countryCode",
+      "postalCode" : "postalCode",
+      "latitude" : 0.8008282,
+      "isp" : "isp",
+      "region" : "region",
+      "continentCode" : "continentCode",
+      "longitude" : 6.0274563,
+      "locationAccuracyRadius" : 1
+    },
+    "ipAddress" : "ipAddress",
+    "message" : "message",
+    "error" : true
+  } ],
+  "message" : "message",
+  "error" : true
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#LookupIPAddressesModel">LookupIPAddressesModel</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiSetmachinealiasGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/setmachinealias</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiSetmachinealiasGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int64</div>      <div class="param">alias (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiSettingsGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/settings</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiSettingsGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">message (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#SettingsModel">SettingsModel</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "settings" : {
+    "minimumTrustLevel" : 10,
+    "smtpTo" : "smtpTo",
+    "notificationWebHook" : "notificationWebHook",
+    "countryBlacklistFirstFailedLogin" : 2,
+    "recentListCount" : 1,
+    "smtpPort" : 2,
+    "smtpFrom" : "smtpFrom",
+    "countryBlacklist" : "countryBlacklist",
+    "countryBlacklistFirstFailedLoginBool" : true,
+    "countryBlacklistAllowedPorts" : "countryBlacklistAllowedPorts",
+    "enableLists" : 3,
+    "smtpPassword" : "smtpPassword",
+    "id" : 0,
+    "smtpWhoIsBodyTemplate" : "smtpWhoIsBodyTemplate",
+    "smtpEnableSsl" : 7,
+    "privateAPIKey" : "privateAPIKey",
+    "smtpWhoIsSubjectTemplate" : "smtpWhoIsSubjectTemplate",
+    "enableListsBool" : true,
+    "maxActiveBlacklistedIPAddresses" : 602745,
+    "smtpBodyTemplate" : "smtpBodyTemplate",
+    "smtpEnableSslBool" : true,
+    "smtpSubjectTemplate" : "smtpSubjectTemplate",
+    "smtpUser" : "smtpUser",
+    "baseUrl" : "baseUrl",
+    "smtpServer" : "smtpServer",
+    "notificationFlags" : 5,
+    "configXml" : "configXml",
+    "smtpToAddresses" : [ "smtpToAddresses", "smtpToAddresses" ],
+    "publicAPIKey" : "publicAPIKey",
+    "naughtyListCount" : 5
+  },
+  "message" : "message",
+  "error" : true
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#SettingsModel">SettingsModel</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiSettingsPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /api/settings</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiSettingsPost</span>)</div>
+    <div class="method-notes"></div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body <a href="#SettingsUpdateModel">SettingsUpdateModel</a> (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+                </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiStatusGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/status</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiStatusGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiSuccessloginattemptsGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/successloginattempts</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiSuccessloginattemptsGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">maxCount (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#SuccessLoginAttemptsModel">SuccessLoginAttemptsModel</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "successLoginAttempts" : [ {
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "machineId" : 4,
+    "machine" : {
+      "notes" : "notes",
+      "otherIPAddresses" : "otherIPAddresses",
+      "fqdn" : "fqdn",
+      "emailAddressesCollection" : [ "emailAddressesCollection", "emailAddressesCollection" ],
+      "machineGuid" : "machineGuid",
+      "localIPAddress" : "localIPAddress",
+      "osName" : "osName",
+      "version" : "version",
+      "props" : "props",
+      "createdAt" : "2000-01-23T04:56:07.000+00:00",
+      "emailAddresses" : "emailAddresses",
+      "osVersion" : "osVersion",
+      "remoteIPAddress" : "remoteIPAddress",
+      "machineWhitelist" : "machineWhitelist",
+      "configXml" : "configXml",
+      "alias" : "alias",
+      "id" : 0,
+      "updatedAt" : "2000-01-23T04:56:07.000+00:00",
+      "status" : "status"
+    },
+    "ipAddressId" : 2,
+    "id" : 3,
+    "source" : "source",
+    "userName" : "userName"
+  }, {
+    "createdAt" : "2000-01-23T04:56:07.000+00:00",
+    "machineId" : 4,
+    "machine" : {
+      "notes" : "notes",
+      "otherIPAddresses" : "otherIPAddresses",
+      "fqdn" : "fqdn",
+      "emailAddressesCollection" : [ "emailAddressesCollection", "emailAddressesCollection" ],
+      "machineGuid" : "machineGuid",
+      "localIPAddress" : "localIPAddress",
+      "osName" : "osName",
+      "version" : "version",
+      "props" : "props",
+      "createdAt" : "2000-01-23T04:56:07.000+00:00",
+      "emailAddresses" : "emailAddresses",
+      "osVersion" : "osVersion",
+      "remoteIPAddress" : "remoteIPAddress",
+      "machineWhitelist" : "machineWhitelist",
+      "configXml" : "configXml",
+      "alias" : "alias",
+      "id" : 0,
+      "updatedAt" : "2000-01-23T04:56:07.000+00:00",
+      "status" : "status"
+    },
+    "ipAddressId" : 2,
+    "id" : 3,
+    "source" : "source",
+    "userName" : "userName"
+  } ],
+  "message" : "message",
+  "error" : true
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#SuccessLoginAttemptsModel">SuccessLoginAttemptsModel</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiTestemailGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/testemail</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiTestemailGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">from (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">to (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">host (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">port (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>      <div class="param">enableSsl (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">user (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">password (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiUnbanipaddressesGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/unbanipaddresses</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiUnbanipaddressesGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">ipAddresses (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">whitelist (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="apiWhitelistGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/whitelist</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">apiWhitelistGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">guid (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#WhitelistedIPAddressesModel">WhitelistedIPAddressesModel</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "whitelistedIPAddresses" : [ "whitelistedIPAddresses", "whitelistedIPAddresses" ],
+  "message" : "message",
+  "error" : true
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#WhitelistedIPAddressesModel">WhitelistedIPAddressesModel</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Home">Home</a></h1>
+  <div class="method"><a name="aboutGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /about</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">aboutGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deletemachineMachineGuidPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /deletemachine/{machineGuid}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">deletemachineMachineGuidPost</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">machineGuid (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="errorGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /error</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">errorGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">statusCode (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="ipaddresseventsIdIpAddressLookupGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /ipaddressevents/{id}/{ipAddressLookup}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">ipaddresseventsIdIpAddressLookupGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">id (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">ipAddressLookup (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="licensesGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /licenses</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">licensesGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="licensesPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /licenses</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">licensesPost</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">formValues (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="loginGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /login</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">loginGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">returnUrl (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="loginPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /login</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">loginPost</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">UserName (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Password (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">RememberMe (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">ReturnUrl (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Message (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Error (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="logoutGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /logout</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">logoutGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="machineIdGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /machine/{id}</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">machineIdGet</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  format: int64</div>    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">delete (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="machinePost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /machine</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">machinePost</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">Machine.Id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int64</div>      <div class="param">Machine.FQDN (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Machine.MachineGuid (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Machine.LocalIPAddress (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Machine.RemoteIPAddress (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Machine.OtherIPAddresses (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Machine.Version (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Machine.OSName (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Machine.OSVersion (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Machine.CreatedAt (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: date-time</div>      <div class="param">Machine.UpdatedAt (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: date-time</div>      <div class="param">Machine.Status (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Machine.MachineWhitelist (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Machine.EmailAddresses (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Machine.EmailAddressesCollection (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Machine.ConfigXml (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Machine.Notes (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Machine.Props (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Machine.Alias (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Message (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Error (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="machinesGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /machines</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">machinesGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="recentactivityGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /recentactivity</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">recentactivityGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">maxCount (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  default: 1000 format: int32</div>      <div class="param">machine (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="rootGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">rootGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">maxCount (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  default: 1000 format: int32</div>      <div class="param">machine (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="settingsGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /settings</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">settingsGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">message (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="settingsPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /settings</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">settingsPost</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">FailedLoginAttemptsBeforeBan (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>      <div class="param">BanTime (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">ResetFailedLoginCountForUnbannedIPAddresses (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">ClearBannedIPAddressesOnRestart (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">ExpireTime (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">CycleTime (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">MinimumTimeBetweenFailedLoginAttempts (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">FirewallRulePrefix (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Whitelist (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">WhitelistRegex (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Blacklist (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">BlacklistRegex (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">UserNameWhitelist (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">UserNameWhitelistRegex (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">UserNameWhitelistMinimumEditDistance (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>      <div class="param">FailedLoginAttemptsBeforeBanUserNameWhitelist (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>      <div class="param">ProcessToRunOnBan (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">ProcessToRunOnUnban (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">FirewallRules (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">EventViewerExpressionsBlock.Groups (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">EventViewerExpressionsNotify.Groups (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">LogFilesToParse (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">CountryBlockRangeEntryCount (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>      <div class="param">RecentListEntryCount (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>      <div class="param">NaughtyListEntryCount (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>      <div class="param">FirewallUriRules (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">ProcessInternalIPAddresses (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.Id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int64</div>      <div class="param">Settings.MaxActiveBlacklistedIPAddresses (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>      <div class="param">Settings.CountryBlacklist (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.RecentListCount (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>      <div class="param">Settings.NaughtyListCount (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>      <div class="param">Settings.NotificationFlags (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.SmtpServer (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.SmtpPort (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>      <div class="param">Settings.SmtpUser (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.SmtpPassword (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.SmtpEnableSslBool (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.SmtpEnableSsl (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>      <div class="param">Settings.SmtpFrom (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.SmtpTo (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.SmtpToAddresses (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.SmtpSubjectTemplate (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.SmtpBodyTemplate (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.SmtpWhoIsSubjectTemplate (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.SmtpWhoIsBodyTemplate (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.NotificationWebHook (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.ConfigXml (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.PublicAPIKey (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.PrivateAPIKey (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.MinimumTrustLevel (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>      <div class="param">Settings.BaseUrl (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.EnableListsBool (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.EnableLists (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>      <div class="param">Settings.CountryBlacklistAllowedPorts (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.CountryBlacklistFirstFailedLoginBool (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Settings.CountryBlacklistFirstFailedLogin (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  format: int32</div>      <div class="param">Message (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>      <div class="param">Error (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="toolsChangecredentialsGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /tools-changecredentials</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">toolsChangecredentialsGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="toolsGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /tools</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">toolsGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="toolsIpaddresseventsGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /tools-ipaddressevents</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">toolsIpaddresseventsGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="toolsIsipaddressbannedGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /tools-isipaddressbanned</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">toolsIsipaddressbannedGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="toolsResolveipaddressesGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /tools-resolveipaddresses</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">toolsResolveipaddressesGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="toolsUnbanipaddressesGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /tools-unbanipaddresses</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">toolsUnbanipaddressesGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="toolsUpdateclientsGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /tools-updateclients</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">toolsUpdateclientsGet</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="updateclientsPost"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /updateclients</code></pre></div>
+    <div class="method-summary"> (<span class="nickname">updateclientsPost</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">formValues (optional)</div>
+      
+            <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash;  </div>    </div>  <!-- field-items -->
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    Success
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#BlacklistedIPAddress"><code>BlacklistedIPAddress</code></a></li>
+    <li><a href="#BlacklistedIPAddressesModel"><code>BlacklistedIPAddressesModel</code></a></li>
+    <li><a href="#CheckBanStateIPAddressesModel"><code>CheckBanStateIPAddressesModel</code></a></li>
+    <li><a href="#CountryCodesToCountryNamesModel"><code>CountryCodesToCountryNamesModel</code></a></li>
+    <li><a href="#CountrySummaryModel"><code>CountrySummaryModel</code></a></li>
+    <li><a href="#EventViewerExpression"><code>EventViewerExpression</code></a></li>
+    <li><a href="#EventViewerExpressionGroup"><code>EventViewerExpressionGroup</code></a></li>
+    <li><a href="#EventViewerExpressionsToBlock"><code>EventViewerExpressionsToBlock</code></a></li>
+    <li><a href="#EventViewerExpressionsToNotify"><code>EventViewerExpressionsToNotify</code></a></li>
+    <li><a href="#FailedLoginAttempt"><code>FailedLoginAttempt</code></a></li>
+    <li><a href="#FailedLoginAttemptsModel"><code>FailedLoginAttemptsModel</code></a></li>
+    <li><a href="#IPAddress"><code>IPAddress</code></a></li>
+    <li><a href="#IPAddressCountryName"><code>IPAddressCountryName</code></a></li>
+    <li><a href="#IPAddressCountryNamesListModel"><code>IPAddressCountryNamesListModel</code></a></li>
+    <li><a href="#IPAddressCountryRanges"><code>IPAddressCountryRanges</code></a></li>
+    <li><a href="#IPAddressCountryRangesModel"><code>IPAddressCountryRangesModel</code></a></li>
+    <li><a href="#IPAddressEventFlags"><code>IPAddressEventFlags</code></a></li>
+    <li><a href="#IPAddressEvents"><code>IPAddressEvents</code></a></li>
+    <li><a href="#IPAddressGeography"><code>IPAddressGeography</code></a></li>
+    <li><a href="#IPAddressGeographyModel"><code>IPAddressGeographyModel</code></a></li>
+    <li><a href="#IPBanLogFileToParse"><code>IPBanLogFileToParse</code></a></li>
+    <li><a href="#LogLevel"><code>LogLevel</code></a></li>
+    <li><a href="#LookupIPAddressesModel"><code>LookupIPAddressesModel</code></a></li>
+    <li><a href="#Machine"><code>Machine</code></a></li>
+    <li><a href="#MachineModel"><code>MachineModel</code></a></li>
+    <li><a href="#MachinesModel"><code>MachinesModel</code></a></li>
+    <li><a href="#RecentActivityFailedLogin"><code>RecentActivityFailedLogin</code></a></li>
+    <li><a href="#RecentActivityModel"><code>RecentActivityModel</code></a></li>
+    <li><a href="#RecentActivitySummaryModel"><code>RecentActivitySummaryModel</code></a></li>
+    <li><a href="#Regex"><code>Regex</code></a></li>
+    <li><a href="#RegexOptions"><code>RegexOptions</code></a></li>
+    <li><a href="#Settings"><code>Settings</code></a></li>
+    <li><a href="#SettingsModel"><code>SettingsModel</code></a></li>
+    <li><a href="#SettingsUpdateModel"><code>SettingsUpdateModel</code></a></li>
+    <li><a href="#SuccessLoginAttempt"><code>SuccessLoginAttempt</code></a></li>
+    <li><a href="#SuccessLoginAttemptsModel"><code>SuccessLoginAttemptsModel</code></a></li>
+    <li><a href="#TimeSpan"><code>TimeSpan</code></a></li>
+    <li><a href="#WhitelistedIPAddressesModel"><code>WhitelistedIPAddressesModel</code></a></li>
+    <li><a href="#XmlCData"><code>XmlCData</code></a></li>
+    <li><a href="#api_changecredentials_body"><code>api_changecredentials_body</code></a></li>
+    <li><a href="#api_changecredentials_body_1"><code>api_changecredentials_body_1</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="BlacklistedIPAddress"><code>BlacklistedIPAddress</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">ipAddressId </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">ipAddress </div><div class="param-desc"><span class="param-type"><a href="#IPAddress">IPAddress</a></span>  </div>
+<div class="param">createdAt </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="BlacklistedIPAddressesModel"><code>BlacklistedIPAddressesModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">blacklistedIPAddresses (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CheckBanStateIPAddressesModel"><code>CheckBanStateIPAddressesModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">ipAddressesBanState (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">map[String, Boolean]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CountryCodesToCountryNamesModel"><code>CountryCodesToCountryNamesModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">countryNames (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">languageCode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CountrySummaryModel"><code>CountrySummaryModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">country (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">bannedIPAddressCount (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">failedLoginCount (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="EventViewerExpression"><code>EventViewerExpression</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">regexObject (optional)</div><div class="param-desc"><span class="param-type"><a href="#Regex">Regex</a></span>  </div>
+<div class="param">xPath </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">regex </div><div class="param-desc"><span class="param-type"><a href="#XmlCData">XmlCData</a></span>  </div>
+<div class="param">xPathIsOptional (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="EventViewerExpressionGroup"><code>EventViewerExpressionGroup</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">source </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">keywordsULONG (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">minimumWindowsMajorVersion (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">minimumWindowsMinorVersion (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">notifyOnly </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">keywords </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">path </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">expressions </div><div class="param-desc"><span class="param-type"><a href="#EventViewerExpression">array[EventViewerExpression]</a></span>  </div>
+<div class="param">expressionsText </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">failedLoginThreshold </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">logLevel </div><div class="param-desc"><span class="param-type"><a href="#LogLevel">LogLevel</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="EventViewerExpressionsToBlock"><code>EventViewerExpressionsToBlock</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">groups (optional)</div><div class="param-desc"><span class="param-type"><a href="#EventViewerExpressionGroup">array[EventViewerExpressionGroup]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="EventViewerExpressionsToNotify"><code>EventViewerExpressionsToNotify</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">groups (optional)</div><div class="param-desc"><span class="param-type"><a href="#EventViewerExpressionGroup">array[EventViewerExpressionGroup]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FailedLoginAttempt"><code>FailedLoginAttempt</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">ipAddressId </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">ipAddress </div><div class="param-desc"><span class="param-type"><a href="#IPAddress">IPAddress</a></span>  </div>
+<div class="param">createdAt </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+<div class="param">machineId </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">machine </div><div class="param-desc"><span class="param-type"><a href="#Machine">Machine</a></span>  </div>
+<div class="param">userName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">source </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="FailedLoginAttemptsModel"><code>FailedLoginAttemptsModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">failedLoginAttempts (optional)</div><div class="param-desc"><span class="param-type"><a href="#FailedLoginAttempt">array[FailedLoginAttempt]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="IPAddress"><code>IPAddress</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">ipString </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">hostName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">country </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">region </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">city </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">updatedAt </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="IPAddressCountryName"><code>IPAddressCountryName</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">countryCode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">languageCode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="IPAddressCountryNamesListModel"><code>IPAddressCountryNamesListModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">names (optional)</div><div class="param-desc"><span class="param-type"><a href="#IPAddressCountryName">array[IPAddressCountryName]</a></span>  </div>
+<div class="param">query (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">languageCode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="IPAddressCountryRanges"><code>IPAddressCountryRanges</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">code (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">names (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">ranges (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="IPAddressCountryRangesModel"><code>IPAddressCountryRangesModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">countryRanges (optional)</div><div class="param-desc"><span class="param-type"><a href="#IPAddressCountryRanges">IPAddressCountryRanges</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="IPAddressEventFlags"><code>IPAddressEventFlags</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="IPAddressEvents"><code>IPAddressEvents</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">ipAddress (optional)</div><div class="param-desc"><span class="param-type"><a href="#IPAddress">IPAddress</a></span>  </div>
+<div class="param">failedLoginAttempts (optional)</div><div class="param-desc"><span class="param-type"><a href="#FailedLoginAttempt">array[FailedLoginAttempt]</a></span>  </div>
+<div class="param">successLoginAttempts (optional)</div><div class="param-desc"><span class="param-type"><a href="#SuccessLoginAttempt">array[SuccessLoginAttempt]</a></span>  </div>
+<div class="param">blacklistedIPAddresses (optional)</div><div class="param-desc"><span class="param-type"><a href="#BlacklistedIPAddress">array[BlacklistedIPAddress]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="IPAddressGeography"><code>IPAddressGeography</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">city (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">postalCode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">region (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">regionCode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">country (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">countryCode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">continent (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">continentCode (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">latitude (optional)</div><div class="param-desc"><span class="param-type"><a href="#float">Float</a></span>  format: float</div>
+<div class="param">longitude (optional)</div><div class="param-desc"><span class="param-type"><a href="#float">Float</a></span>  format: float</div>
+<div class="param">locationAccuracyRadius (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">isp (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="IPAddressGeographyModel"><code>IPAddressGeographyModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">ipAddress (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">geography (optional)</div><div class="param-desc"><span class="param-type"><a href="#IPAddressGeography">IPAddressGeography</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="IPBanLogFileToParse"><code>IPBanLogFileToParse</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">source </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">pathAndMask </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">failedLoginRegex </div><div class="param-desc"><span class="param-type"><a href="#XmlCData">XmlCData</a></span>  </div>
+<div class="param">failedLoginRegexTimestampFormat </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">failedLoginLogLevel </div><div class="param-desc"><span class="param-type"><a href="#LogLevel">LogLevel</a></span>  </div>
+<div class="param">successfulLoginRegex </div><div class="param-desc"><span class="param-type"><a href="#XmlCData">XmlCData</a></span>  </div>
+<div class="param">successfulLoginRegexTimestampFormat </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">successfulLoginLogLevel </div><div class="param-desc"><span class="param-type"><a href="#LogLevel">LogLevel</a></span>  </div>
+<div class="param">platformRegex </div><div class="param-desc"><span class="param-type"><a href="#XmlCData">XmlCData</a></span>  </div>
+<div class="param">pingInterval </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">maxFileSize </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">failedLoginThreshold </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">pathsAndMasks (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="LogLevel"><code>LogLevel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="LookupIPAddressesModel"><code>LookupIPAddressesModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">ipAddresses (optional)</div><div class="param-desc"><span class="param-type"><a href="#IPAddressGeographyModel">array[IPAddressGeographyModel]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Machine"><code>Machine</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">fqdn </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">machineGuid </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">localIPAddress </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">remoteIPAddress </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">otherIPAddresses </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">version </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">osName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">osVersion </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">createdAt </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+<div class="param">updatedAt </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+<div class="param">status </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">machineWhitelist </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">emailAddresses </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">emailAddressesCollection (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">configXml </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">notes </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">props </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">alias (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="MachineModel"><code>MachineModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">machine (optional)</div><div class="param-desc"><span class="param-type"><a href="#Machine">Machine</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="MachinesModel"><code>MachinesModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">machines (optional)</div><div class="param-desc"><span class="param-type"><a href="#Machine">array[Machine]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="RecentActivityFailedLogin"><code>RecentActivityFailedLogin</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">failedLoginAttempt (optional)</div><div class="param-desc"><span class="param-type"><a href="#FailedLoginAttempt">FailedLoginAttempt</a></span>  </div>
+<div class="param">ipAddress (optional)</div><div class="param-desc"><span class="param-type"><a href="#IPAddress">IPAddress</a></span>  </div>
+<div class="param">machine (optional)</div><div class="param-desc"><span class="param-type"><a href="#Machine">Machine</a></span>  </div>
+<div class="param">isBlacklisted (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="RecentActivityModel"><code>RecentActivityModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">summary (optional)</div><div class="param-desc"><span class="param-type"><a href="#RecentActivitySummaryModel">RecentActivitySummaryModel</a></span>  </div>
+<div class="param">blacklistedIPAddresses (optional)</div><div class="param-desc"><span class="param-type"><a href="#BlacklistedIPAddress">array[BlacklistedIPAddress]</a></span>  </div>
+<div class="param">successLoginAttempts (optional)</div><div class="param-desc"><span class="param-type"><a href="#SuccessLoginAttempt">array[SuccessLoginAttempt]</a></span>  </div>
+<div class="param">failedLoginAttempts (optional)</div><div class="param-desc"><span class="param-type"><a href="#RecentActivityFailedLogin">array[RecentActivityFailedLogin]</a></span>  </div>
+<div class="param">machine (optional)</div><div class="param-desc"><span class="param-type"><a href="#Machine">Machine</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="RecentActivitySummaryModel"><code>RecentActivitySummaryModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">countrySummaries (optional)</div><div class="param-desc"><span class="param-type"><a href="#CountrySummaryModel">array[CountrySummaryModel]</a></span>  </div>
+<div class="param">sumRecentFailedLogins (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">sumRecentBannedIPAddresses (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">sumRecentSuccessfulLogins (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Regex"><code>Regex</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">options (optional)</div><div class="param-desc"><span class="param-type"><a href="#RegexOptions">RegexOptions</a></span>  </div>
+<div class="param">rightToLeft (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">matchTimeout (optional)</div><div class="param-desc"><span class="param-type"><a href="#TimeSpan">TimeSpan</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="RegexOptions"><code>RegexOptions</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Settings"><code>Settings</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">maxActiveBlacklistedIPAddresses </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">countryBlacklist </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">recentListCount </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">naughtyListCount </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">notificationFlags </div><div class="param-desc"><span class="param-type"><a href="#IPAddressEventFlags">IPAddressEventFlags</a></span>  </div>
+<div class="param">smtpServer </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">smtpPort </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">smtpUser </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">smtpPassword </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">smtpEnableSslBool </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">smtpEnableSsl (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">smtpFrom </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">smtpTo </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">smtpToAddresses (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">smtpSubjectTemplate </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">smtpBodyTemplate </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">smtpWhoIsSubjectTemplate </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">smtpWhoIsBodyTemplate </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">notificationWebHook </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">configXml </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">publicAPIKey </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">privateAPIKey </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">minimumTrustLevel </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">baseUrl </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">enableListsBool </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">enableLists (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">countryBlacklistAllowedPorts </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">countryBlacklistFirstFailedLoginBool </div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">countryBlacklistFirstFailedLogin (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="SettingsModel"><code>SettingsModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">settings (optional)</div><div class="param-desc"><span class="param-type"><a href="#Settings">Settings</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="SettingsUpdateModel"><code>SettingsUpdateModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">settings (optional)</div><div class="param-desc"><span class="param-type"><a href="#Settings">Settings</a></span>  </div>
+<div class="param">failedLoginAttemptsBeforeBan (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">banTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">resetFailedLoginCountForUnbannedIPAddresses (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">clearBannedIPAddressesOnRestart (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">expireTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#TimeSpan">TimeSpan</a></span>  </div>
+<div class="param">cycleTime (optional)</div><div class="param-desc"><span class="param-type"><a href="#TimeSpan">TimeSpan</a></span>  </div>
+<div class="param">minimumTimeBetweenFailedLoginAttempts (optional)</div><div class="param-desc"><span class="param-type"><a href="#TimeSpan">TimeSpan</a></span>  </div>
+<div class="param">firewallRulePrefix (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">whitelist (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">whitelistRegex (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">blacklist (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">blacklistRegex (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">userNameWhitelist (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">userNameWhitelistRegex (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">userNameWhitelistMinimumEditDistance (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">failedLoginAttemptsBeforeBanUserNameWhitelist (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">processToRunOnBan (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">processToRunOnUnban (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">firewallRules (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">eventViewerExpressionsBlock (optional)</div><div class="param-desc"><span class="param-type"><a href="#EventViewerExpressionsToBlock">EventViewerExpressionsToBlock</a></span>  </div>
+<div class="param">eventViewerExpressionsNotify (optional)</div><div class="param-desc"><span class="param-type"><a href="#EventViewerExpressionsToNotify">EventViewerExpressionsToNotify</a></span>  </div>
+<div class="param">logFilesToParse (optional)</div><div class="param-desc"><span class="param-type"><a href="#IPBanLogFileToParse">array[IPBanLogFileToParse]</a></span>  </div>
+<div class="param">countryBlockRangeEntryCount (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">recentListEntryCount (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">naughtyListEntryCount (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">firewallUriRules (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">processInternalIPAddresses (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="SuccessLoginAttempt"><code>SuccessLoginAttempt</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">id </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">ipAddressId </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">ipAddress </div><div class="param-desc"><span class="param-type"><a href="#IPAddress">IPAddress</a></span>  </div>
+<div class="param">createdAt </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span>  format: date-time</div>
+<div class="param">machineId </div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">machine </div><div class="param-desc"><span class="param-type"><a href="#Machine">Machine</a></span>  </div>
+<div class="param">userName </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">source </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="SuccessLoginAttemptsModel"><code>SuccessLoginAttemptsModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">successLoginAttempts (optional)</div><div class="param-desc"><span class="param-type"><a href="#SuccessLoginAttempt">array[SuccessLoginAttempt]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="TimeSpan"><code>TimeSpan</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">ticks (optional)</div><div class="param-desc"><span class="param-type"><a href="#long">Long</a></span>  format: int64</div>
+<div class="param">days (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">hours (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">milliseconds (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">minutes (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">seconds (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  format: int32</div>
+<div class="param">totalDays (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">totalHours (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">totalMilliseconds (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">totalMinutes (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+<div class="param">totalSeconds (optional)</div><div class="param-desc"><span class="param-type"><a href="#double">Double</a></span>  format: double</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="WhitelistedIPAddressesModel"><code>WhitelistedIPAddressesModel</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">error (optional)</div><div class="param-desc"><span class="param-type"><a href="#boolean">Boolean</a></span>  </div>
+<div class="param">whitelistedIPAddresses (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="XmlCData"><code>XmlCData</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="api_changecredentials_body"><code>api_changecredentials_body</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">UserName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Role (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Delete (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="api_changecredentials_body_1"><code>api_changecredentials_body_1</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">UserName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Password (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Role (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Delete (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
